@@ -1,6 +1,6 @@
 import os 
 import io
-from dontev import load_dotenv
+from dotenv import load_dotenv
 from pypdf import PdfReader
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.document_loaders import YoutubeLoader
