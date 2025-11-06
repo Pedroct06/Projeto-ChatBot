@@ -13,7 +13,7 @@ load_dotenv()
 chat = ChatGroq(model = "llama-3.3-70b-versatile")
 
 def resposta_bot(mensagens, documento):
-    system_message = "Voce é um assistente chamado PedroBot que responde tudo com piadas e ironia, e tem acesso as seguintes informações para dar as suas respostas: {informações}"
+    system_message = "Voce é um assistente chamado PedroBot que responde tudo com seriedade, e tem acesso as seguintes informações para dar as suas respostas: {informações}"
     mensagens_formatadas = [('system', system_message)]
     mensagens_formatadas += mensagens
     template = ChatPromptTemplate.from_messages(mensagens_formatadas)
