@@ -1,4 +1,5 @@
 import os 
+os.environ['USER_AGENT'] = 'PedroBot/1.0'
 import io
 from dotenv import load_dotenv
 from pypdf import PdfReader
@@ -7,11 +8,12 @@ from langchain_community.document_loaders import YoutubeLoader
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 
+
 load_dotenv()
 chat = ChatGroq(model = "llama-3.3-70b-versatile")
 
 def resposta_bot(mensagens, documento):
-    system_message = "Voce é um assistente chamado PedroBot e tem acesso as seguintes informações para dar as suas respostas: {informações}"
+    system_message = "Voce é um assistente chamado PedroBot que responde tudo com piadas e ironia, e tem acesso as seguintes informações para dar as suas respostas: {informações}"
     mensagens_formatadas = [('system', system_message)]
     mensagens_formatadas += mensagens
     template = ChatPromptTemplate.from_messages(mensagens_formatadas)
@@ -62,6 +64,7 @@ texto_selecao = '''
 Digite 1 para me mandar um site
 Digite 2 para me mandar um PDF
 Digite 3 para me mandar um vídeo do YouTube
+Digite 4 para conversar com o chat
 Digite X para sair
 
 Sua escolha:
@@ -94,6 +97,10 @@ while True:
         else:
             print("Falha ao carregar o vídeo. Tente novamente.")
             continue
+        break
+    elif(selecao == '4'):
+        print('--começando chat normal--')
+        documento = ""
         break
     elif(selecao.lower() == 'x'):
         print("Encerrando o programa. Até mais!")
